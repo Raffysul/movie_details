@@ -99,8 +99,8 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           backgroundColor: Colors.white,
-          body: const TabBarView(children: [
-            InTheaterScreen(),
+          body: TabBarView(children: [
+            InTheaterScreen(trending: trendingMovies[index][""],),
             // Center(
             //     child: Text(
             //   'In Theater Screen',
