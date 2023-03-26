@@ -36,12 +36,19 @@ class Movie {
   final String backdropPath;
   final String overview;
   final String releaseDate;
+  final String runTime;
+  List<dynamic> genres;
 
-  Movie(
-      {required this.title,
-      required this.rating,
-      required this.imagePath,
-      required this.backdropPath,
-      required this.overview,
-      required this.releaseDate});
+  Movie({
+    required this.title,
+    required this.rating,
+    required this.imagePath,
+    required this.backdropPath,
+    required this.overview,
+    required this.releaseDate,
+    required this.runTime,
+    required this.genres,
+  });
+
 }
+

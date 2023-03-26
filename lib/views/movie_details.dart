@@ -198,9 +198,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
                               const SizedBox(
                                 width: 15,
                               ),
-                              const Text(
-                                '2hr 32min',
-                                style: TextStyle(
+                              Text(
+                                movie.runTime,
+                                style: const TextStyle(
                                     fontSize: 12,
                                     color: Color(0xFF9A9BB2),
                                     fontWeight: FontWeight.w400),
