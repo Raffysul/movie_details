@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'movie_details.dart';
 
-
 class InTheaterScreen extends StatefulWidget {
-  final List trending;
-  const InTheaterScreen({Key? key, required this.trending}) : super(key: key);
+  const InTheaterScreen({Key? key}) : super(key: key);
 
   @override
   State<InTheaterScreen> createState() => _InTheaterScreenState();
@@ -13,7 +11,7 @@ class InTheaterScreen extends StatefulWidget {
 
 class _InTheaterScreenState extends State<InTheaterScreen> {
   var list = ["Action", "Crime", "Comedy", "Drama"];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,15 +64,13 @@ class _InTheaterScreenState extends State<InTheaterScreen> {
                       );
                     });
                   },
-                  //child: ListView.builder(),
-                  
-                  // child: Image.asset(
-                  //   'assets/images/image1.png',
-                  //   height: 300,
-                  //   width: 300,
-                  //   alignment: Alignment.center,
-                  //   fit: BoxFit.contain,
-                  // ),
+                  child: Image.asset(
+                    'assets/images/image1.png',
+                    height: 300,
+                    width: 300,
+                    alignment: Alignment.center,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
