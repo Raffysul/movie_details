@@ -39,6 +39,7 @@ Future<List<Movie>> fetchMovies() async {
       imagePath: 'https://image.tmdb.org/t/p/w500${jsonData['poster_path']}',
       backdropPath: 'https://image.tmdb.org/t/p/w500${jsonData['backdrop_path']}',
       overview: jsonData['overview'],
+      releaseDate: jsonData['release_date'],
     );
 
     return [movie];

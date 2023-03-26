@@ -177,28 +177,28 @@ class _MoviesScreenState extends State<MoviesScreen> {
                             height: 10,
                           ),
                           Row(
-                            children: const [
+                            children: [
                               Text(
-                                '2019',
-                                style: TextStyle(
+                              movie.releaseDate,
+                                style: const TextStyle(
                                     fontSize: 14,
                                     color: Color(0xFF9A9BB2),
                                     fontWeight: FontWeight.w400),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
-                              Text(
+                              const Text(
                                 'PG-13',
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color(0xFF9A9BB2),
                                     fontWeight: FontWeight.w400),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
-                              Text(
+                              const Text(
                                 '2hr 32min',
                                 style: TextStyle(
                                     fontSize: 12,

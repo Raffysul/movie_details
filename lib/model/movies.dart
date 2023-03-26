@@ -35,11 +35,13 @@ class Movie {
   final String imagePath;
   final String backdropPath;
   final String overview;
+  final String releaseDate;
 
   Movie(
       {required this.title,
       required this.rating,
       required this.imagePath,
       required this.backdropPath,
-      required this.overview});
+      required this.overview,
+      required this.releaseDate});
 }
