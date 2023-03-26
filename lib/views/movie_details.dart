@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../model/movies.dart';
+import '../service/remote_services.dart';
 import 'home_page.dart';
 
 class MoviesScreen extends StatefulWidget {
@@ -15,7 +17,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.bottom]);
     super.initState();
@@ -23,20 +24,24 @@ class _MoviesScreenState extends State<MoviesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
+    return FutureBuilder<List<Movie>>(
+        future: fetchMovies(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final movie = snapshot.data![0];
+          return SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 300,
-                  //decoration: const BoxDecoration(color: Colors.white),
-                  //height: 30,
                   child: Stack(
                     children: <Widget>[
-                      Image.asset(
-                        'assets/images/image2.png',
+                      Image.network(
+                        movie.backdropPath,
                         fit: BoxFit.fill,
                       ),
                       Positioned(
@@ -62,8 +67,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                         width: 350,
                         height: 100,
                         child: Container(
-                          // width: 100,
-                          // height: 100,
+                            // width: 100,
+                            // height: 100,
                             margin: const EdgeInsets.all(15),
                             padding: const EdgeInsets.all(8),
                             decoration: const BoxDecoration(
@@ -75,21 +80,21 @@ class _MoviesScreenState extends State<MoviesScreen> {
                               children: [
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Icon(Icons.star, color: Color(0xFFFCC419)),
+                                  children: [
+                                    const Icon(Icons.star, color: Color(0xFFFCC419)),
                                     Text(
-                                      '8.2/10',
-                                      style: TextStyle(
+                                      movie.rating.toString(),
+                                      style: const TextStyle(
                                           color: Color(0xFF12153D),
                                           fontSize: 10,
                                           fontWeight: FontWeight.w500),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 3,
                                     ),
-                                    Text(
-                                      '150,212',
-                                      style: TextStyle(
+                                     Text(
+                                      movie.rating.toString(),
+                                      style: const TextStyle(
                                           color: Color(0xFF9A9BB2),
                                           fontSize: 8,
                                           fontWeight: FontWeight.w400),
@@ -161,9 +166,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            'Ford v Ferrari',
-                            style: TextStyle(
+                          Text(
+                            movie.title,
+                            style: const TextStyle(
                                 fontSize: 25,
                                 color: Color(0xFF12153D),
                                 fontWeight: FontWeight.w600),
@@ -233,7 +238,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                           margin: const EdgeInsets.all(5),
                           //padding: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey, width: 1.5),
+                              border:
+                                  Border.all(color: Colors.grey, width: 1.5),
                               borderRadius: BorderRadius.circular(30),
                               color: Colors.white,
                               shape: BoxShape.rectangle),
@@ -277,11 +283,11 @@ class _MoviesScreenState extends State<MoviesScreen> {
                   margin: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       Expanded(
                         child: Text(
-                          'American car designer Carroll Shelby and driver Kn Miles battle corporate interference and the laws of physics to build a revolutionary race car for Ford in order.',
-                          style: TextStyle(
+                          movie.overview,
+                          style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: Color(0xFF737599),
@@ -310,7 +316,9 @@ class _MoviesScreenState extends State<MoviesScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(
@@ -322,7 +330,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                             backgroundColor: Colors.white,
                             radius: 32,
                             child: CircleAvatar(
-                              backgroundImage: AssetImage('assets/images/profile1.png'),
+                              backgroundImage:
+                                  AssetImage('assets/images/profile1.png'),
                               radius: 30,
                             ),
                           ),
@@ -358,7 +367,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                             backgroundColor: Colors.white,
                             radius: 32,
                             child: CircleAvatar(
-                              backgroundImage: AssetImage('assets/images/profile2.png'),
+                              backgroundImage:
+                                  AssetImage('assets/images/profile2.png'),
                               radius: 30,
                             ),
                           ),
@@ -394,7 +404,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                             backgroundColor: Colors.white,
                             radius: 32,
                             child: CircleAvatar(
-                              backgroundImage: AssetImage('assets/images/profile3.png'),
+                              backgroundImage:
+                                  AssetImage('assets/images/profile3.png'),
                               radius: 30,
                             ),
                           ),
@@ -432,7 +443,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
                             backgroundColor: Colors.white,
                             radius: 32,
                             child: CircleAvatar(
-                              backgroundImage: AssetImage('assets/images/profile4.png'),
+                              backgroundImage:
+                                  AssetImage('assets/images/profile4.png'),
                               radius: 30,
                             ),
                           ),
@@ -464,10 +476,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
               ],
             ),
-          )),
-    );
+          );
+        });
   }
 }

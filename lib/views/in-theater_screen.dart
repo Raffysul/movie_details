@@ -14,25 +14,6 @@ class InTheaterScreen extends StatefulWidget {
 class _InTheaterScreenState extends State<InTheaterScreen> {
   var list = ["Action", "Crime", "Comedy", "Drama"];
 
-  // List<Movie> _movies = [];
-  //
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _loadMovies();
-  // }
-  //
-  // Future<void> _loadMovies() async {
-  //   try {
-  //     final movies = await MovieApi.getMovieDetails();
-  //     setState(() {
-  //       _movies = movies;
-  //     });
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Movie>>(
@@ -153,39 +134,6 @@ class _InTheaterScreenState extends State<InTheaterScreen> {
               ],
             ),
           );
-          // return SingleChildScrollView(
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: [
-          //       const SizedBox(
-          //         height: 30,
-          //       ),
-          //       Container(
-          //         margin: const EdgeInsets.all(20),
-          //         decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(24),
-          //         ),
-          //         child: Card(
-          //             elevation: 5.0,
-          //             child: Image.network(
-          //               movie.imagePath,
-          //               // height: 300,
-          //               // width: 300,
-          //               fit: BoxFit.contain,
-          //               alignment: Alignment.center,
-          //             )),
-          //       ),
-          //       const SizedBox(
-          //         height: 20,
-          //       ),
-          //       Text(movie.title),
-          //       const SizedBox(
-          //         height: 20,
-          //       ),
-          //       Text(movie.rating.toString())
-          //     ],
-          //   ),
-          // );
         });
   }
 }

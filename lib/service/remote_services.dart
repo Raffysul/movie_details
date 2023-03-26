@@ -34,9 +34,12 @@ Future<List<Movie>> fetchMovies() async {
     final jsonData = json.decode(response.body);
 
     final movie = Movie(
-        title: jsonData['title'],
-        rating: jsonData['vote_average'].toDouble(),
-        imagePath: 'https://image.tmdb.org/t/p/w500${jsonData['poster_path']}');
+      title: jsonData['title'],
+      rating: jsonData['vote_average'].toDouble(),
+      imagePath: 'https://image.tmdb.org/t/p/w500${jsonData['poster_path']}',
+      backdropPath: 'https://image.tmdb.org/t/p/w500${jsonData['backdrop_path']}',
+      overview: jsonData['overview'],
+    );
 
     return [movie];
   } else {

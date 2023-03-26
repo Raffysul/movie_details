@@ -33,10 +33,13 @@ class Movie {
   final String title;
   final double rating;
   final String imagePath;
+  final String backdropPath;
+  final String overview;
 
-  Movie({required this.title, required this.rating, required this.imagePath});
+  Movie(
+      {required this.title,
+      required this.rating,
+      required this.imagePath,
+      required this.backdropPath,
+      required this.overview});
 }
-
-
-
-
