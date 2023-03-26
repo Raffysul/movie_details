@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 import 'in-theater_screen.dart';
-// import 'package:my_movie_app/views/home_screen.dart';
-// import 'package:my_movie_app/views/in_theater_screen.dart';
-//
-// import '../models/movies.dart';
-// import '../services/remote_services.dart';
-//import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -40,14 +34,12 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
             bottom: const TabBar(
-              //controller: _tabcontroller,
               labelColor: Colors.black,
               unselectedLabelColor: Colors.grey,
               indicatorColor: Color(0xFFFE6D8E),
               labelStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
               indicatorSize: TabBarIndicatorSize.label,
               indicatorWeight: 2.0,
-              //indicatorPadding: EdgeInsets.all(8),
               isScrollable: true,
               tabs: [
                 Tab(
@@ -65,11 +57,6 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.white,
           body: const TabBarView(children: [
             InTheaterScreen(),
-            // Center(
-            //     child: Text(
-            //   'In Theater Screen',
-            //   style: TextStyle(color: Colors.yellow, fontSize: 25),
-            // )),
             Center(
                 child: Text(
               'Box Office screen',
