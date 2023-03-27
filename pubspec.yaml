@@ -39,6 +39,7 @@ dependencies:
   google_fonts: ^4.0.3
   http: ^0.13.5
   icons_launcher: ^2.1.0
+  provider: ^6.0.5
 
 icons_launcher:
   image_path: "assets/images/movielogo.png"

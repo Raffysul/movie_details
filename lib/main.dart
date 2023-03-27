@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:movie_details/provider/movie_provider.dart';
 import 'package:movie_details/views/home_page.dart';
+import 'package:provider/provider.dart';
 
 
 void main() {
@@ -16,13 +18,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.latoTextTheme(),
-        //primarySwatch: Colors.green,
+    return ChangeNotifierProvider(
+      create: (context) => MovieProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: GoogleFonts.latoTextTheme(),
+        ),
+        home: const Scaffold(
+          body: HomePage(),
+        ),
       ),
-      home: const HomePage(),
     );
   }
 }
