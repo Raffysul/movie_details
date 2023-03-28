@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:movie_details/views/home_page.dart';
+
 import 'package:provider/provider.dart';
 
 import '../model/movies.dart';
@@ -74,7 +74,8 @@ class _InTheaterScreenState extends State<InTheaterScreen> {
               onTap: () {
                 setState(() {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const MoviesScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const MoviesScreen()),
                   );
                 });
               },
