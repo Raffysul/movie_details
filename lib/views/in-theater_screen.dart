@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_details/views/home_page.dart';
+//import 'package:movie_details/views/home_page.dart';
 import 'package:provider/provider.dart';
 
 import '../model/movies.dart';
 import '../provider/movie_provider.dart';
-//import 'movie_details.dart';
+import 'movie_details.dart';
 
 class InTheaterScreen extends StatefulWidget {
   const InTheaterScreen({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class _InTheaterScreenState extends State<InTheaterScreen> {
   Widget build(BuildContext context) {
     return Consumer<MovieProvider>(builder: (context, movieProvider, child) {
       if (movieProvider.movie == null) {
-        return const CircularProgressIndicator();
+        return const Center(child: CircularProgressIndicator());
       }
 
       final Movie movie = movieProvider.movie!;
@@ -74,16 +74,25 @@ class _InTheaterScreenState extends State<InTheaterScreen> {
               onTap: () {
                 setState(() {
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(builder: (context) => const MoviesScreen()),
                   );
                 });
               },
-              child: Image.network(
-                movie.imageUrl,
-                height: 300,
-                width: 300,
-                alignment: Alignment.center,
-                fit: BoxFit.contain,
+              child: Card(
+                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Image.network(
+                    movie.imageUrl,
+                    height: 300,
+                    //width: 300,
+                    alignment: Alignment.center,
+                    fit: BoxFit.contain,
+                  ),
+                ),
               ),
             ),
             const SizedBox(
@@ -114,7 +123,7 @@ class _InTheaterScreenState extends State<InTheaterScreen> {
                     width: 5,
                   ),
                   Text(
-                    'Rating: ${movie.rating}',
+                    movie.rating.toString(),
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.w500),
                   ),
@@ -130,62 +139,3 @@ class _InTheaterScreenState extends State<InTheaterScreen> {
     });
   }
 }
-
-/*@override
-Widget build(BuildContext context) {
-  return Center(
-    child: Consumer<MovieProvider>(
-      builder: (context, movieProvider, child) {
-        if (movieProvider.movie == null) {
-          return const CircularProgressIndicator();
-        }
-
-        final Movie movie = movieProvider.movie!;
-
-        return SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.network(
-                movie.imageUrl,
-                height: 300,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                movie.title,
-                style:
-                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Rating: ${movie.rating}',
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Release Date: ${movie.releaseDate}',
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Runtime: ${movie.runtime} minutes',
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                movie.overview,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 18),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Genres: ${movie.genres.join(", ")}',
-                style: const TextStyle(fontSize: 18),
-              ),
-            ],
-          ),
-        );
-      },
-    ),
-  );
-}*/
